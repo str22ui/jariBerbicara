@@ -119,15 +119,17 @@
 </div>
 
 {{-- ================================== Testimonials ========================================= --}}
+{{-- resources/views/user/testimonials.blade.php --}}
+
 <div class="relative py-20 text-white px-20 bg-[#272F42]">
     <div class="md:mb-12 text-center">
         <h2 class="text-2xl font-bold">Testimonials</h2>
     </div>
 
-    <div class="swiper-container md:h-56 ">
+    <div class="swiper-container md:h-56">
         <div class="swiper-wrapper">
             @foreach ($testimonials as $item)
-            <div class="swiper-slide max-w-2xl  p-6 flex bg-[#DDCEBB] border border-gray-200 rounded-lg shadow ">
+            <div class="swiper-slide max-w-2xl p-6 flex bg-[#DDCEBB] border border-gray-200 rounded-lg shadow">
                 <article>
                     <div class="flex items-center mb-4 text-[#323030]">
                         @if ($item->image)

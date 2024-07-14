@@ -260,6 +260,17 @@ class AdminController extends Controller
         return view('admin.testimoni.index', compact('testimonials'));
     }
 
+
+    public function updateTestimonialStatus(Request $request, $id)
+    {
+        $testimonial = Testimonial::findOrFail($id);
+        $testimonial->status = $request->status;
+        $testimonial->save();
+
+        return redirect()->back()->with('success', 'Testimonial status updated successfully.');
+    }
+
+
     public function dashContact()
     {
         // Fetch all WordCards from the database
@@ -268,6 +279,17 @@ class AdminController extends Controller
         // Pass the data to the view
         return view('admin.contactUs.index', compact('contactUs'));
     }
+
+    
+    public function getContact($id)
+    {
+        $contactUs = ContactUs::find($id);
+
+        return view('admin.contactUs.get_contact', [
+            'contactUs' => $contactUs,
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      */

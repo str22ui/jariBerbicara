@@ -78,18 +78,22 @@ Route::middleware('auth')->group(function () {
         Route::post('/word/update/{id}', [AdminController::class, 'updateWord']);
         Route::delete('/word/delete/{id}', [AdminController::class, 'deleteWord'])->name('word.destroy');
         Route::get('/dashTestimoni', [AdminController::class, 'dashTestimonials']);
+        
+        Route::post('/testimonials/update-status/{id}', [AdminController::class, 'updateTestimonialStatus'])->name('testimonials.updateStatus');
+        Route::post('/testimonials/{id}', [AdminController::class, 'getContact']);
+
         Route::get('/dashContact', [AdminController::class, 'dashContact']);
 
         Route::get('/dashUser', [AdminController::class, 'dashUser']);
     });
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified',
+// ])->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('dashboard');
+//     })->name('dashboard');
+// });

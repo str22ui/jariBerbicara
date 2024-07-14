@@ -4,31 +4,33 @@
 @section('page')
 <div class="py-24 text-[#323030] text-center">
     <div class="text-center">   
-        <h2 class="text-2xl font-bold">Tentang Kami</h2>
+        <h2 class="text-2xl font-bold mb-10">Tentang Kami</h2>
     </div>
-    <div class="items-center text-center mx-auto py-20 ">
-        <div class="flex flex-col items-center bg-white  md:flex-row md:max-w-4xl md:h-80 hover:bg-gray-100  mx-auto">
+    <div class="items-center text-center bg-[#F7F0E6]  mx-auto py-20 mb-20 ">
+        <div class="flex flex-col items-center  md:flex-row md:max-w-4xl md:h-80  mx-auto">
             <div class="flex flex-col justify-between p-4 leading-normal text-start">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Tujuan Kami</h5>
                 <p class="mb-3 font-normal text-gray-700 w-3/4">Jari Berbicara adalah platform edukatif yang didedikasikan untuk mengajarkan bahasa isyarat kepada semua orang, dari anak-anak hingga dewasa</p>
             </div>
-            <img class="object-cover w-full rounded-t-lg h-full md:h-full md:w-64 mmd:rounded-none md:rounded-s-lg" src="{{ asset('images/huruf_a.jpg') }}" alt="">   
+            <img class="object-cover w-full rounded-t-lg h-full md:h-full md:w-64 mmd:rounded-none md:rounded-s-lg" src="{{ asset('images/login4.jpg') }}" alt="">   
         </div>
     </div>
-    <div class="flex md:mx-48 py-20">
-        <div class="text-start w-1/2">
-            <a href="#">
+    <div class="flex flex-col md:flex-row py-20 relative">
+        <div class="flex-1  text-start z-10 p-8 md:py-16 md:pl-24">
+            <div href="#">
                 <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900">Visi</h5>
-            </a>
+            </div>
             <p class="mb-3 font-normal text-gray-500 w-3/4">Mewujudkan dunia yang inklusif di mana semua orang dapat berkomunikasi dengan bahasa isyarat</p>
         </div>
-        <div class="text-end w-1/2">
+        <div class="flex-1 bg-transparent text-end z-10 p-8 md:py-16 md:pr-24">
             <a href="#">
                 <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900">Misi</h5>
             </a>
             <p class="mb-3 font-normal text-gray-500 ml-auto w-3/4">Menyediakan materi pembelajaran bahasa isyarat yang mudah diakses, interaktif, dan menyenangkan untuk semua orang</p>
         </div>
+        <div class="absolute inset-0 w-full md:w-1/2 bg-[#F7E0D0] z-0"></div>
     </div>
+    
     
     <div class="py-12">
         <div class="py-12">
@@ -47,7 +49,7 @@
             </div>
             <div class="w-full  max-w-64 h-96 py-5 bg-[#F9F6F1] border border-gray-200 rounded-lg shadow">
                 <div class="flex flex-col  pb-10 px-5">
-                    <img class="w-16 h-16 mb-3 rounded-full shadow-lg" src="/docs/images/people/profile-picture-3.jpg" alt="Bonnie image"/>
+                    <img class="w-16 h-16 mb-3 rounded-full shadow-lg" src="{{ asset('images/wordAbout.jpg')}}" alt="Bonnie image"/>
                     <div class="text-start">
                         <h5 class="mb-1 text-xl py-2 font-medium text-gray-900">Pembelajaran Kata-Kata Sederhana</h5>
                         <span class="text-sm text-gray-500">Selain huruf abjad, kami juga menyediakan kartu kata-kata sederhana yang sering digunakan dalam komunikasi sehari-hari. Setiap kata dilengkapi dengan video dan foto yang memperlihatkan cara melakukan isyaratnya </span>
@@ -57,7 +59,7 @@
             </div>
             <div class="w-full  max-w-64 h-96 py-5 bg-[#F9F6F1] border border-gray-200 rounded-lg shadow">
                 <div class="flex flex-col  pb-10 px-5">
-                    <img class="w-16 h-16 mb-3 rounded-full shadow-lg" src="/docs/images/people/profile-picture-3.jpg" alt="Bonnie image"/>
+                    <img class="w-16 h-16 mb-3 rounded-full shadow-lg" src="{{ asset('images/accesbilityAbout.jpg')}}" alt="Bonnie image"/>
                     <div class="text-start">
                         <h5 class="mb-1 py-2 text-xl font-medium text-gray-900">Aksesibilitas untuk Semua</h5>
                         <span class="text-sm text-gray-500">Kami berusaha untuk membuat situs kami seaksesibel mungkin bagi semua orang, termasuk mereka yang memiliki kebutuhan khusus. </span>
@@ -67,7 +69,7 @@
             </div>
             <div class="w-full  max-w-64 h-96 py-5 bg-[#F9F6F1] border border-gray-200 rounded-lg shadow">
                 <div class="flex flex-col  pb-10 px-5">
-                    <img class="w-16 h-16 mb-3  rounded-full shadow-lg" src="/docs/images/people/profile-picture-3.jpg" alt="Bonnie image"/>
+                    <img class="w-16 h-16 mb-3  rounded-full shadow-lg" src="{{ asset('images/testimonialsAbout.jpg')}}" alt="Bonnie image"/>
                     <div class="text-start">
                         <h5 class="mb-1 py-2 text-xl font-medium text-gray-900">Testimoni Dari Pengguna</h5>
                         <span class="text-sm text-gray-500">Kami memberikan platform bagi pengguna kami untuk berbagi pengalaman mereka. Testimoni dari pengguna lain dapat memberikan motivasi dan inspirasi bagi Anda untuk terus belajar dan berkembang </span>

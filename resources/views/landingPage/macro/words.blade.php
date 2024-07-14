@@ -40,7 +40,7 @@
         </div>
     </div>
     
-    <div id="video-container" class="max-w-6xl mx-auto bg-white border border-gray-200 rounded-lg shadow hidden mt-12">
+    <div id="video-container" class="max-w-6xl mx-auto  hidden mt-12">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             @foreach ($wordCards as $item)
             <div class="border rounded-lg overflow-hidden shadow-md">
@@ -81,6 +81,12 @@
             <a href="/loginUser">
             <button type="submit" class=" w-1/5  text-[#323030] bg-[#DDCEBB] hover:bg-[#99856B] hover:text-white  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-4 py-2 text-center">Masuk</button></a>
         </div>
+    </div>
+    @endif
+
+    @if($isLoggedIn)
+    <div class=" text-center md:mt-14">
+        <h2 class="text-lg font-medium">Yeay! kamu berhasil selesaikan pembelajaran</h2>
     </div>
     @endif
         

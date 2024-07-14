@@ -58,14 +58,13 @@ class AuthController extends Controller
         $user = User::create([
             'username' => $request->username,
             'email' => $request->email,
-            'password' => $request->password, // Password akan dienkripsi otomatis
+            'password' => Hash::make($request->password), // Hash password
             'city' => $request->city,
             'image' => $imagePath,
         ]);
-        return redirect('/loginUser')->with('success', 'Register successfully.');
 
-        // return response()->json(['message' => 'User created successfully', 'user' => $user], 201);
-    }
+        return redirect('/loginUser')->with('success', 'Register successfully.');
+    }   
     public function updateProfile(Request $request, $id)
     {
         // Find the user by id
@@ -181,7 +180,7 @@ class AuthController extends Controller
         });
 
         return back()->with('status', 'We have emailed your password reset link!');
-    }
+    }   
     
     
     public function showResetPasswordForm($token)

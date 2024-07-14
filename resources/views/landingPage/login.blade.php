@@ -32,7 +32,7 @@
                     <input type="password" name="password" id="password" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
                     <label for="password" class="peer-focus:font-medium absolute text-lg text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:text-blue-600">Password</label>
                 </div>
-                <p class="text-sm mb-5 text-[#727272]">Lupa Kata Sandi? <a href="/forgot-password" class="text-indigo-600 hover:text-indigo-500">Klik disini!</a></p>
+                {{-- <p class="text-sm mb-5 text-[#727272]">Lupa Kata Sandi? <a href="/forgot-password" class="text-indigo-600 hover:text-indigo-500">Klik disini!</a></p> --}}
                 <button type="submit" class="w-full font-medium text-[#323030] bg-[#DDCEBB] hover:bg-[#99856B] hover:text-white py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Masuk</button>
             </form>
             <p class="mt-4 text-sm text-center">Belum punya akun? <a href="/register" class="text-indigo-600 hover:text-indigo-500">Registrasi terlebih dahulu yuk!</a></p>

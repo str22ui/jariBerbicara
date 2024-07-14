@@ -26,6 +26,8 @@ class UserController extends Controller
 
         // Tambahkan user_id ke data yang telah divalidasi
         $validatedData['user_id'] = Auth::id();
+        // Tambahkan status dengan nilai default 'sembunyikan'
+        $validatedData['status'] = 'sembunyikan';
 
         // Tambahkan data testimonials ke dalam tabel Testimonials menggunakan model
         Testimonial::create($validatedData);
@@ -104,12 +106,13 @@ class UserController extends Controller
     {
         // Fetch testimonials along with user information
         $testimonials = Testimonial::select('testimonials.*', 'users.image', 'users.username', 'users.city')
-            ->join('users', 'testimonials.user_id', '=', 'users.id')
-            ->get();
+        ->join('users', 'testimonials.user_id', '=', 'users.id')
+        ->where('testimonials.status', 'tampilkan')
+        ->get();
 
         // Pass the data to the view
         return view('landingPage.macro.home', compact('testimonials'));
-    }
+        }
 
     public function editProfile($id)
     {

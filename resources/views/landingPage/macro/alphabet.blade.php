@@ -20,7 +20,7 @@
     </div>
 
 
-    <div id="foto-container" class="max-w-6xl mx-auto bg-white border border-gray-200 rounded-lg shadow mt-12">
+    <div id="foto-container" class="max-w-6xl mx-auto   mt-12">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             @foreach ($abjadCards as $item)
             <div class="border rounded-lg overflow-hidden shadow-md">
@@ -31,7 +31,7 @@
                     <img class="w-full h-80 object-cover" src="https://source.unsplash.com/1417x745/?house" alt="...">
                     @endif
                 </a>
-                <div class="p-5 text-center">
+                <div class="p-5 text-center bg-[#F9F6F1]">
                     <a href="#">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{ $item->abjad }}</h5>
                     </a>
@@ -55,7 +55,7 @@
                     <img class="w-full h-80 object-cover" src="https://source.unsplash.com/1417x745/?house" alt="...">
                     @endif
                 </a>
-                <div class="p-5 text-center">
+                <div class="p-5 text-center bg-[#F9F6F1]">
                     <a href="#">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{ $item->abjad }}</h5>
                     </a>
@@ -82,6 +82,11 @@
     </div>
     @endif
 
+    @if($isLoggedIn)
+    <div class=" text-center md:mt-14">
+        <h2 class="text-lg font-medium">Yeay! kamu berhasil selesaikan pembelajaran</h2>
+    </div>
+    @endif
 </div>
 
 <style>
