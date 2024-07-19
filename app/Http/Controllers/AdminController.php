@@ -29,7 +29,7 @@ class AdminController extends Controller
     public function dashAlphabet()
     {
         // Fetch all AbjadCards from the database
-        $abjadCards = AbjadCard::all();
+        $abjadCards = AbjadCard::orderBy('abjad','asc')->get();
 
         // Pass the data to the view
         return view('admin.alphabet.index', compact('abjadCards'));
@@ -47,7 +47,7 @@ class AdminController extends Controller
     {
         $validatedData = $request->validate([
             'abjad' => 'nullable|string|max:255',
-            'title' => 'nullable|string|max:255',
+            'description_video' => 'nullable|string|max:255',
             'description' => 'nullable|string',
             'image_url' => 'nullable|image|file|max:5120|mimes:jpeg,png,jpg,gif,webp',
             'video_url' => 'nullable|file|max:51200|mimes:mp4,mov,ogg,qt',
@@ -89,13 +89,13 @@ class AdminController extends Controller
             'image_url' => 'nullable|image|file|max:5120|mimes:jpeg,png,jpg,gif,webp',
             'video_url' => 'nullable|file|max:51200|mimes:mp4,mov,ogg,qt',
             'abjad' => 'nullable|string|max:255',
-            'title' => 'nullable|string|max:255',
+            'description_video' => 'nullable|string|max:255',
             'description' => 'nullable|string',
         ]);
 
         // Update the unit's data
         $abjadCards->abjad = $request->input('abjad');
-        $abjadCards->title = $request->input('title');
+        $abjadCards->description_video = $request->input('description_video');
         $abjadCards->description = $request->input('description');
 
         if ($request->hasFile('image_url')) {
@@ -156,7 +156,7 @@ class AdminController extends Controller
     {
         $validatedData = $request->validate([
             'word' => 'nullable|string|max:255',
-            'title' => 'nullable|string|max:255',
+            'description_video' => 'nullable|string|max:255',
             'description' => 'nullable|string',
             'image_url' => 'nullable|image|file|max:5120|mimes:jpeg,png,jpg,gif,webp',
             'video_url' => 'nullable|file|max:51200|mimes:mp4,mov,ogg,qt',
@@ -198,13 +198,13 @@ class AdminController extends Controller
             'image_url' => 'nullable|image|file|max:5120|mimes:jpeg,png,jpg,gif,webp',
             'video_url' => 'nullable|file|max:51200|mimes:mp4,mov,ogg,qt',
             'word' => 'nullable|string|max:255',
-            'title' => 'nullable|string|max:255',
+            'description_video' => 'nullable|string|max:255',
             'description' => 'nullable|string',
         ]);
 
         // Update the unit's data
         $wordCards->word = $request->input('word');
-        $wordCards->title = $request->input('title');
+        $wordCards->description_video = $request->input('description_video');
         $wordCards->description = $request->input('description');
 
         if ($request->hasFile('image_url')) {
@@ -300,6 +300,24 @@ class AdminController extends Controller
 
         // Pass the data to the view
         return view('admin.user.index', compact('users'));
+    }
+
+    public function deleteUser($id)
+    {
+        // Find the unit by id
+        $users = User::find($id);
+
+        // Check if the unit exists
+        if (!$users) {
+            // Handle the case where the unit with the given ID does not exist
+            return redirect()->back()->with('error', 'Unit not found.');
+        }
+
+        // Delete the unit
+        $users->delete();
+
+        // Redirect back or to any other page
+        return redirect('/dashUser')->with('success', 'User deleted successfully.');
     }
     
 }

@@ -217,6 +217,16 @@
                         <input type="text" class="form-control" id="abjad" name="abjad" value="{{ $abjadCards->abjad }}">
                     </div>
                     <div class="mb-3">
+                        <label for="video_url" class="form-label">Video</label>
+                        <input type="file" class="form-control" id="video_url" name="video_url">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description_video" class="form-label">Deskripsi Video</label>
+                        <input type="text" class="form-control" id="description_video" name="description_video" value="{{ $abjadCards->description_video}}">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
                         <label for="image_url" class="form-label">Foto</label>
                         <input type="file" class="form-control" id="image_url" name="image_url">
                         @if ($abjadCards->image_url)
@@ -224,12 +234,11 @@
                             <img src="{{ asset('storage/' . $abjadCards->image_url) }}" alt="Current Foto" style="max-width: 200px; margin-top: 5px;">
                         @endif
                     </div>
-                </div>
-                <div class="col-md-6">
                     <div class="mb-3">
-                        <label for="video_url" class="form-label">Video</label>
-                        <input type="file" class="form-control" id="video_url" name="video_url">
+                        <label for="description" class="form-label">Deskripsi</label>
+                        <input type="text" class="form-control" id="description" name="description" value="{{ $abjadCards->description}}">
                     </div>
+                   
                 </div>
                 <div class="col-12 text-center">
                     <button type="submit" class="btn btn-primary btn-block">Submit</button>

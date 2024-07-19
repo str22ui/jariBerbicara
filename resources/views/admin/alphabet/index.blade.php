@@ -20,7 +20,9 @@
                                 <th>No</th>
                                 <th>Huruf</th>
                                 <th>Foto</th>
+                                <th>Deskripsi</th>
                                 <th>Video</th>
+                                <th>Deskripsi</th>
                                 <th>Opsi</th>
                             </tr>
                         </thead>
@@ -29,15 +31,18 @@
                                 <th>No</th>
                                 <th>Huruf</th>
                                 <th>Foto</th>
+                                <th>Deskripsi</th>
                                 <th>Video</th>
+                                <th>Deskripsi</th>
                                 <th>Opsi</th>
                             </tr>
                         </tfoot>
                         <tbody>
                             @foreach($abjadCards as $index => $abjadCard)
                                 <tr >
-                                    <td>{{ $index + 1 }}</td>
-                                    <td>{{ $abjadCard->abjad }}</td>
+                                    <td style="width: 3%;">{{ $index + 1 }}</td>
+                                    <td >{{ $abjadCard->abjad }}</td>
+                                   
                                     <td>
                                         @if ($abjadCard->image_url)
                                             <img class="rounded-t-lg" src="{{ asset('storage/' . $abjadCard->image_url) }}" alt="" style="width: 100px;" />
@@ -45,7 +50,9 @@
                                             <img src="https://source.unsplash.com/1417x745/?house" class="d-block w-100 rounded-4" alt="..." style="width: 100px;">
                                         @endif
                                     </td>
-                                    <td><a href="{{ asset('storage/' . $abjadCard->video_url) }}" target="_blank">View Video</a></td>
+                                    <td style="width: 20%;">{{ $abjadCard->description }}</td>
+                                    <td style="width: 5%;"><a href="{{ asset('storage/' . $abjadCard->video_url) }}" target="_blank">View Video</a></td>
+                                    <td style="width: 20%;">{{ $abjadCard->description_video }}</td>
                                     <td>
                                         <form method="POST" action="/alphabet/{{ $abjadCard->id }}">
                                             @csrf

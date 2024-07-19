@@ -55,7 +55,11 @@
                                             @csrf
                                             <button type="submit" class="btn btn-primary">Edit</button>
                                         </form> --}}
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <form action="/user/delete/{{ $user->id }}" method="POST" style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger" style="width: 40%; margin-top:2%" >Delete</button>
+                                        </form>
                                         {{-- <form action="/alphabet/delete/{{ $abjadCard->id }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')

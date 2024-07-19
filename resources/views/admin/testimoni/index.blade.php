@@ -46,7 +46,7 @@
                             <td>{{ $index + 1 }}</td>
                             <td>{{ $testimoni->name }}</td>
                             <td>{{ $testimoni->city }}</td>
-                            <td>{{ $testimoni->testimonials }}</td>
+                            <td style="width: 50%;">{{ $testimoni->testimonials }}</td>
                             <td class="">
                                 <form action="{{ route('testimonials.updateStatus', $testimoni->id) }}" method="POST">
                                     @csrf

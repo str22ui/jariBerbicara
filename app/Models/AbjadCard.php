@@ -13,7 +13,7 @@ class AbjadCard extends Model
     // ];
     protected $fillable = [
         'abjad',
-        'title',
+        'description_video',
         'description',
         'image_url',
         'video_url',

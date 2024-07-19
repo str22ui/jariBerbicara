@@ -20,7 +20,9 @@
                                 <th>No</th>
                                 <th>Kata</th>
                                 <th>Foto</th>
+                                <th>Deskripsi</th>
                                 <th>Video</th>
+                                <th>Deskripsi</th>
                                 <th>Opsi</th>
                             </tr>
                         </thead>
@@ -29,15 +31,17 @@
                                 <th>No</th>
                                 <th>Kata</th>
                                 <th>Foto</th>
+                                <th>Deskripsi</th>
                                 <th>Video</th>
+                                <th>Deskripsi</th>
                                 <th>Opsi</th>
                             </tr>
                         </tfoot>
                         <tbody>
                             @foreach($wordCards as $index => $wordCard)
                                 <tr>
-                                    <td>{{ $index + 1 }}</td>
-                                    <td>{{ $wordCard->word }}</td>
+                                    <td style="width: 3%;">{{ $index + 1 }}</td>
+                                    <td >{{ $wordCard->word }}</td>
                                     <td>
                                         @if ($wordCard->image_url)
                                             <img class="rounded-t-lg" src="{{ asset('storage/' . $wordCard->image_url) }}" alt="" style="width: 100px;" />
@@ -45,16 +49,18 @@
                                             <img src="https://source.unsplash.com/1417x745/?house" class="d-block w-100 rounded-4" alt="..." style="width: 100px;">
                                         @endif
                                     </td>
-                                    <td><a href="{{ asset('storage/' . $wordCard->video_url) }}" target="_blank">View Video</a></td>
+                                    <td style="width: 15%;">{{ $wordCard->description }}</td>
+                                    <td style="width: 5%;"><a href="{{ asset('storage/' . $wordCard->video_url) }}" target="_blank">View Video</a></td>
+                                    <td style="width: 15%;">{{ $wordCard->description_video }}</td>
                                     <td>
                                         <form method="POST" action="/word/{{ $wordCard->id }}">
                                             @csrf
-                                            <button type="submit" class="btn btn-primary">Edit</button>
+                                            <button type="submit" class="btn btn-primary" style="width: 40%">Edit</button>
                                         </form>
                                         <form action="/word/delete/{{ $wordCard->id }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                            <button type="submit" class="btn btn-danger" style="width: 40%; margin-top:2%" >Delete</button>
                                         </form>
                                     </td>
                                 </tr>

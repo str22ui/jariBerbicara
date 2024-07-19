@@ -5,19 +5,21 @@
 <div class="relative">
     <div class="absolute inset-0 bg-cover bg-center z-0" style="background-image: url('{{ asset('images/jumbotron.jpg') }}'); filter: brightness(0.35);"></div>
     <div class="relative z-10 flex items-center justify-center h-screen">
-        <div class="max-w-4xl mx-auto  text-white">
-            <div class="flex justify-between">
-                <div class="w-3/4">
+        <div class="max-w-4xl mx-auto text-white">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="w-full md:w-3/4  mb-4  px-5 md:mb-0">
                     <h1 class="text-3xl mb-4 font-bold">Jari Berbicara: Membuka Dunia dengan Bahasa Isyarat</h1>
                     <h2 class="text-xl mb-8">Pelajari huruf abjad dan kata-kata sederhana menggunakan bahasa isyarat melalui video dan foto interaktif.</h2>
                 </div>
-                <div class="1/4">
+                <div class="w-full md:w-1/4 text-center">
                     <a href="/abjad">
-                    <button type="button" class="w-full text-[#323030] bg-[#DDCEBB] hover:bg-[#99856B] hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-3">Mulai belajar</button></a>
+                        <button type="button" class="w-1/2 md:w-full text-[#323030] bg-[#DDCEBB] hover:bg-[#99856B] hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-6 py-3">Mulai belajar</button>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
+    
 </div>
 
 <div class="relative py-24 text-[#323030]">
@@ -64,14 +66,14 @@
 
 </div>
 
-<div class="relative py-24 text-[#323030] md:mx-20">
+<div class="relative py-20 md:py-24 text-[#323030] md:px-20">
     <div class="text-center">
         <h2 class="text-2xl font-bold">Fitur Utama Website</h2>
-        <div class="md:mt-4 md:mb-14">
+        <div class="md:mt-4 md:mb-14 py-5 md:py-0">
             <p>Lorem Ipsum is simply dummy text of the printing and <br>typesetting industry.</p>
         </div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mx-5 md:mx-0">
         <!-- Alphabet Section Card -->
         <div>
             <a href="#" class="flex flex-col md:flex-row items-center bg-[#F9F6F1] border border-gray-200 rounded-lg shadow hover:bg-gray-100">
@@ -120,17 +122,17 @@
 
 {{-- ================================== Testimonials ========================================= --}}
 {{-- resources/views/user/testimonials.blade.php --}}
-
-<div class="relative py-20 text-white px-20 bg-[#272F42]">
+<div class="relative py-20 text-white px-4 md:px-20 bg-[#272F42]">
     <div class="md:mb-12 text-center">
         <h2 class="text-2xl font-bold">Testimonials</h2>
     </div>
 
-    <div class="swiper-container md:h-56">
+    <div class="swiper mySwiper">
         <div class="swiper-wrapper">
             @foreach ($testimonials as $item)
-            <div class="swiper-slide max-w-2xl p-6 flex bg-[#DDCEBB] border border-gray-200 rounded-lg shadow">
-                <article>
+            <div class="swiper-slide max-w-sm w-5/6 sm:w-full bg-[#DDCEBB] border border-gray-200 rounded-lg shadow relative"
+                style="min-width: 280px;">
+                <article class="p-4 md:p-6">
                     <div class="flex items-center mb-4 text-[#323030]">
                         @if ($item->image)
                             <img class="w-10 h-10 me-4 rounded-full" src="{{ asset('storage/' . $item->image) }}" alt="">
@@ -146,16 +148,9 @@
             </div>
             @endforeach
         </div>
-        
-        <!-- Add Pagination -->
         <div class="swiper-pagination"></div>
-        <!-- Add Navigation -->
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
     </div>
 </div>
-
-
 
 {{-- ================================== Call to action ========================================= --}}
 
@@ -167,45 +162,41 @@
     </div>
     <div class="mt-12">
         <a href="/abjad">
-        <button type="submit" class=" w-1/4 h-14 text-[#323030] bg-[#DDCEBB] hover:bg-[#99856B] hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-xl  px-4 py-2 text-center">Mulai Belajar</button></a>
+        <button type="submit" class=" w-full md:w-1/4 h-14 text-[#323030] bg-[#DDCEBB] hover:bg-[#99856B] hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-xl  px-4 py-2 text-center">Mulai Belajar</button></a>
     </div>
 
 </div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const swiper = new Swiper('.swiper-container', {
-            loop: true,
+        const swiper = new Swiper('.mySwiper', {
+            slidesPerView: 1,
+            spaceBetween: 10,
+            centeredSlides: true,
             pagination: {
                 el: '.swiper-pagination',
                 clickable: true,
             },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            slidesPerView: 1,
-            spaceBetween: 10,
             breakpoints: {
-                // when window width is >= 640px
                 640: {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                },
+                768: {
                     slidesPerView: 2,
                     spaceBetween: 20,
                 },
-                // when window width is >= 768px
-                768: {
+                1024: {
                     slidesPerView: 3,
                     spaceBetween: 30,
                 },
-                // when window width is >= 1024px
-                1024: {
+                1280: {
                     slidesPerView: 4,
                     spaceBetween: 40,
                 },
-            }
+            },
+            resizeReInit: false,
         });
     });
 </script>
-
-
 @endsection

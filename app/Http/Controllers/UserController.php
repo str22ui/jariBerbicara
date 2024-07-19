@@ -66,19 +66,22 @@ class UserController extends Controller
     }
 
     public function getAbjad()
-        {
-    $abjadCards = AbjadCard::all();
-    $isLoggedIn = auth()->check(); // Check if the user is logged in
-
-    if (!$isLoggedIn) {
-        // Limit the number of cards to 6 if the user is not logged in
-        $abjadCards = $abjadCards->take(6);
+    {
+        // Ambil semua Abjad Cards dan urutkan berdasarkan nama (ascending)
+        $abjadCards = AbjadCard::orderBy('abjad', 'asc')->get();
+    
+        // Check apakah pengguna sudah login
+        $isLoggedIn = auth()->check();
+    
+        if (!$isLoggedIn) {
+            // Batasi jumlah kartu menjadi 6 jika pengguna belum login
+            $abjadCards = $abjadCards->take(6);
+        }
+    
+        // Kirim data ke view 'alphabet' bersama dengan variabel $isLoggedIn
+        return view('landingPage.macro.alphabet', compact('abjadCards', 'isLoggedIn'));
     }
-
-    return view('landingPage.macro.alphabet', compact('abjadCards', 'isLoggedIn'));
-    }
-
-
+    
     public function getWord()
     {
         // Fetch all AbjadCards from the database

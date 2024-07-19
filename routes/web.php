@@ -85,6 +85,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/dashContact', [AdminController::class, 'dashContact']);
 
         Route::get('/dashUser', [AdminController::class, 'dashUser']);
+        Route::delete('/user/delete/{id}', [AdminController::class, 'deleteUser'])->name('user.destroy');
     });
 });
 

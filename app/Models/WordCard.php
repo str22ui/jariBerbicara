@@ -10,7 +10,7 @@ class WordCard extends Model
     use HasFactory;
     protected $fillable = [
         'word',
-        'title',
+        'description_video',
         'description',
         'image_url',
         'video_url',

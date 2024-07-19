@@ -8,13 +8,14 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="h-screen flex items-center justify-center">
-    <div class="flex w-full bg-white shadow-md">
-        <div class="w-3/5 bg-gray-300">
+    <div class="flex flex-col md:flex-row w-full bg-white shadow-md">
+        <div class="w-full md:w-3/5 bg-gray-300">
             <img src="{{ asset('images/Register.png') }}" alt="Image" class="w-full h-full object-cover">
         </div>
-        <div class="w-2/5 p-8 md:mt-56">
+        <div class="w-full md:w-2/5 p-8 md:mt-56">
             <h2 class="text-4xl font-medium mb-4 text-center">Register</h2>
             <p class="mb-8 text-center text-xl">Buat akun baru</p>
             @if($errors->any())
@@ -41,11 +42,9 @@
                 <button type="submit" class="w-full bg-[#DDCEBB] hover:bg-[#99856B] hover:text-white py-2 px-4 rounded-md  focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Register</button>
                 <p class="mt-4 text-sm text-center">Sudah punya akun? <a href="/loginUser" class="text-indigo-600 hover:text-indigo-500">Masuk disini!</a></p>
             </form>
-           
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
 </html>
-

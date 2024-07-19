@@ -4,7 +4,7 @@
 @section('page')
 <div class="relative py-24 text-[#323030]">
     <div class="text-center">
-        <h2 class="text-2xl font-bold ">Mari kita belajar kata sederhana bahasa isyarat</h2>
+        <h2 class="text-2xl font-bold px-5 md:px-0">Mari kita belajar kata sederhana bahasa isyarat</h2>
         <div class="mt-4 mb-8">
             <p>Tentukan referensi kamu!</p>
         </div>
@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <div id="foto-container" class="max-w-6xl mx-auto bg-white border border-gray-200 rounded-lg shadow mt-12">
+    <div id="foto-container" class="max-w-6xl mx-auto px-5 md:px-0 mt-12">
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             @foreach ($wordCards as $item)
             <div class="border rounded-lg overflow-hidden shadow-md">
@@ -30,9 +30,15 @@
                     <img class="w-full h-80 object-cover" src="https://source.unsplash.com/1417x745/?house" alt="...">
                     @endif
                 </a>
-                <div class="p-5 text-center">
+                <div class="p-5 text-center bg-[#F9F6F1]">
                     <a href="#">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{ $item->word }}</h5>
+                    </a>
+                </div>
+                <hr>
+                <div class="p-5 text-center bg-[#F9F6F1] h-full">
+                    <a href="#">
+                        <h5 class="mb-2 text-md font-medium tracking-tight text-gray-900">{{ $item->description }}</h5>
                     </a>
                 </div>
             </div>
@@ -54,9 +60,15 @@
                     <img class="w-full h-80 object-cover" src="https://source.unsplash.com/1417x745/?house" alt="...">
                     @endif
                 </a>
-                <div class="p-5 text-center">
+                <div class="p-5 text-center bg-[#F9F6F1]">
                     <a href="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{ $item->abjad }}</h5>
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{ $item->word }}</h5>
+                    </a>
+                </div>
+                <hr>
+                <div class="p-5 text-center bg-[#F9F6F1] h-full">
+                    <a href="#">
+                        <h5 class="mb-2 text-md font-medium tracking-tight text-gray-900">{{ $item->description_video }}</h5>
                     </a>
                 </div>
             </div>
@@ -74,18 +86,18 @@
                 <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/>
             </svg>
         </div>
-        <div class="mt-8 mb-3">
+        <div class="mt-8 mb-5 md:mb-3">
             <h2>Mau lihat lebih lengkap? Masuk terlebih dahulu yuk!</h2>
         </div>
-        <div class="w-full">
+        <div class="w-full px-10 md:px-0">
             <a href="/loginUser">
-            <button type="submit" class=" w-1/5  text-[#323030] bg-[#DDCEBB] hover:bg-[#99856B] hover:text-white  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-4 py-2 text-center">Masuk</button></a>
+            <button type="submit" class=" w-full md:w-1/5 text-[#323030] bg-[#DDCEBB] hover:bg-[#99856B] hover:text-white  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-md px-4 py-2 text-center">Masuk</button></a>
         </div>
     </div>
     @endif
 
     @if($isLoggedIn)
-    <div class=" text-center md:mt-14">
+    <div class=" text-center md:mt-14 md:pb-24">
         <h2 class="text-lg font-medium">Yeay! kamu berhasil selesaikan pembelajaran</h2>
     </div>
     @endif

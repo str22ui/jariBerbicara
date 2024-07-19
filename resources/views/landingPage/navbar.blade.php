@@ -23,33 +23,41 @@
       display: flex;
       gap: 1rem; 
     }
+    /* Styling for logout confirmation popup */
+    #logoutModal {
+        z-index: 9999;
+    }
+
+    #logoutModal.hidden {
+        display: none;
+    }
+
   </style>
 </head>
 
 <body>
     
-    <nav class="bg-[#272F42] fixed w-full z-20 top-0 start-0 border-b border-[#DDCEBB] ">
+    <nav class="bg-[#272F42] fixed w-full z-20 top-0 left-0 border-b border-[#DDCEBB]">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="{{ asset('images/logo8.jpg') }}" class="h-8 rounded-3xl" alt="Flowbite Logo">
-                <span class="self-center text-white text-2xl font-semibold whitespace-nowrap">Jari Berbicara</span>
+                <img src="{{ asset('images/logo8.jpg') }}" class="h-8 rounded-3xl" alt="Logo">
+                <span class="self-center text-white text-lg font-semibold whitespace-nowrap ">Jari Berbicara</span>
             </a>
             <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                 @auth
-                    <div class="relative inline-block text-left">
-                        <button id="dropdownButton" class="flex items-center text-[#323030] bg-[#DDCEBB] hover:bg-[#99856B] hover:text-white  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center">
-                            <span>Halo, {{ Auth::user()->username }}</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="12" class="mb-1 ml-2" fill="black">
+                    <div class="relative inline-block text-left ">
+                        <button id="dropdownButton" class="flex  h-full items-center text-[#323030] bg-[#DDCEBB] hover:bg-[#99856B] hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center">
+                            <span class="">Halo, {{ Auth::user()->username }}</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="8" class="mb-1 ml-2" fill="black">
                                 <path d="M137.4 374.6c12.5 12.5 32.8 12.5 45.3 0l128-128c9.2-9.2 11.9-22.9 6.9-34.9s-16.6-19.8-29.6-19.8L32 192c-12.9 0-24.6 7.8-29.6 19.8s-2.2 25.7 6.9 34.9l128 128z"/>
                             </svg>
                         </button>
-                        
-                        <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5">
-                            <a href="/profile"><button type="submit" class="block px-4 py-2 text-sm text-gray-700 w-full text-left hover:bg-gray-100">Profile</button></a>
+                        <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md  shadow-lg ring-1 ring-black ring-opacity-5">
+                            <a href="/profile"><button type="submit" class="block px-4 py-2 text-sm text-gray-700 w-full text-left hover:bg-gray-100 hover:rounded-md">Profile</button></a>
                             <a href="/testimonials"><button type="submit" class="block px-4 py-2 text-sm text-gray-700 w-full text-left hover:bg-gray-100">Testimonials</button></a>
-                            <form action="/logout" class="block w-full text-left">
+                            <form action="/logout" id="logoutForm" class="block w-full text-left">
                                 @csrf
-                                <button type="submit" class="block px-4 py-2 text-sm text-gray-700 w-full text-left hover:bg-gray-100">Logout</button>
+                                <button type="button" onclick="toggleLogoutPopup()" class="block px-4 py-2 text-sm text-gray-700 w-full text-left hover:bg-gray-100 hover:rounded-md">Logout</button>
                             </form>
                         </div>
                     </div>
@@ -68,22 +76,23 @@
             <div class="items-center justify-between sm:hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
                 <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
                     <li>
-                        <a href="/" class="{{ request()->is('/') ? 'bg-[#F9F6F1] text-[#272F42] w-20 text-center' : 'bg-transparent text-white' }} block py-2 px-4 rounded hover:bg-[#DDCEBB] md:p-0">Beranda</a>
+                        <a href="/" class="{{ request()->is('/') ? 'bg-[#F9F6F1] text-[#272F42] w-24 md:w-20 text-center' : 'bg-transparent text-white' }} block py-2 px-4 rounded hover:underline md:p-0">Beranda</a>
                     </li>
                     <li>
-                        <a href="/abjad" class="{{ request()->is('abjad') ? 'bg-[#F9F6F1]  text-[#272F42] w-20 text-center' : 'bg-transparent text-white' }} block py-2 px-4 rounded hover:bg-[#DDCEBB] md:p-0">Abjad</a>
+                        <a href="/abjad" class="{{ request()->is('abjad') ? 'bg-[#F9F6F1] text-[#272F42] w-20 text-center' : 'bg-transparent text-white' }} block py-2 px-4 rounded hover:underline md:p-0">Abjad</a>
                     </li>
                     <li>
-                        <a href="/words" class="{{ request()->is('words') ? 'bg-[#F9F6F1]  text-[#272F42] w-44 text-center' : 'bg-transparent text-white' }} block py-2 px-4 rounded hover:bg-[#DDCEBB] md:p-0">Kata Sederhana</a>
+                        <a href="/words" class="{{ request()->is('words') ? 'bg-[#F9F6F1] text-[#272F42] w-44 text-center' : 'bg-transparent text-white' }} block py-2 px-4 rounded hover:underline md:p-0">Kata Sederhana</a>
                     </li>
                     <li>
-                        <a href="/aboutUs" class="{{ request()->is('aboutUs') ? 'bg-[#F9F6F1]  text-[#272F42] w-44 text-center' : 'bg-transparent text-white' }} block py-2 px-4 rounded hover:bg-[#DDCEBB]  md:p-0">Tentang Kami</a>
+                        <a href="/aboutUs" class="{{ request()->is('aboutUs') ? 'bg-[#F9F6F1] text-[#272F42] w-44 text-center' : 'bg-transparent text-white' }} block py-2 px-4 rounded hover:underline md:p-0">Tentang Kami</a>
                     </li>
+                    
+                   
                 </ul>
             </div>
         </div>
     </nav>
-  
     <div class="container-fluid mx-auto mt-16">
         @yield('page')
     </div>
@@ -123,8 +132,8 @@
                         </li>
                     </ul>
                 </div>
-                <div>
-                    <h2 class="mb-6 text-sm font-semibold text-[#323030] uppercase ">Ikuti Kami</h2>
+                <div class="">
+                    <h2 class="mb-6 text-sm font-semibold text-[#323030] uppercase text-start md:text-center">Ikuti Kami</h2>
                     <div class="flex mt-4 sm:justify-center sm:mt-0">
                         <!-- LinkedIn -->
                         <a href="#" class="text-gray-500 hover:text-gray-900 dark:hover:text-white">
@@ -178,16 +187,107 @@
         </div>
         </div>
     </footer>
+    <div id="logoutModal" class="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center hidden">
+        <div class="bg-white rounded-lg p-8 max-w-lg mx-auto">
+            <p class="text-xl font-semibold mb-4 text-center">Konfirmasi Keluar</p>
+            <p class="text-sm mb-6">Apakah kamu yakin untuk keluar?</p>
+            <div class="flex justify-center">
+                <button type="button" onclick="toggleLogoutPopup()" class="text-sm px-4 py-2 bg-gray-200 text-gray-800 hover:bg-gray-300 rounded-md mr-2">Cancel</button>
+                <button type="submit" onclick="logout()" class="text-sm px-4 py-2 bg-red-500 text-white hover:bg-red-600 rounded-md">Logout</button>
+            </div>
+        </div>
+    </div>
 
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const dropdownButton = document.getElementById('dropdownButton');
-        const dropdownMenu = document.getElementById('dropdownMenu');
-        dropdownButton.addEventListener('click', function() {
-            dropdownMenu.classList.toggle('hidden');
+
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const dropdownButton = document.getElementById('dropdownButton');
+            const dropdownMenu = document.getElementById('dropdownMenu');
+
+            dropdownButton.addEventListener('click', function () {
+                dropdownMenu.classList.toggle('hidden');
+            });
+
+            window.addEventListener('click', function (e) {
+                if (!dropdownButton.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    dropdownMenu.classList.add('hidden');
+                }
+            });
+
+            const collapseToggle = document.querySelector('[data-collapse-toggle]');
+            const navbarSticky = document.getElementById('navbar-sticky');
+
+            collapseToggle.addEventListener('click', function () {
+                navbarSticky.classList.toggle('hidden');
+            });
         });
+        function toggleLogoutPopup() {
+        const logoutModal = document.getElementById('logoutModal');
+        logoutModal.classList.toggle('hidden');
+    }
+
+    function logout() {
+        document.getElementById('logoutForm').submit();
+    
+    }
+
+    // ====popup testimonials======
+    function showConfirmModal() {
+        document.getElementById('confirmModal').classList.remove('hidden');
+    }
+
+    // Fungsi untuk menyembunyikan modal konfirmasi
+    function hideConfirmModal() {
+        document.getElementById('confirmModal').classList.add('hidden');
+    }
+
+    // Tambahkan event listener pada tombol Kirim
+    document.getElementById('submitTestimonial').addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Panggil fungsi untuk menampilkan modal konfirmasi sebelum mengirim
+        showConfirmModal();
     });
-  </script>
+
+    // Event listener untuk tombol Ya (confirm)
+    document.getElementById('confirmSubmit').addEventListener('click', function() {
+        // Submit form jika dikonfirmasi
+        document.getElementById('testimonialForm').submit();
+        hideConfirmModal(); // Sembunyikan modal setelah submit
+    });
+
+    // Event listener untuk tombol Batal (cancel)
+    document.getElementById('cancelSubmit').addEventListener('click', function() {
+        hideConfirmModal(); // Sembunyikan modal jika dibatalkan
+    });
+
+    // Fungsi untuk menampilkan modal sukses
+    function showSuccessModal() {
+        document.getElementById('successModal').classList.remove('hidden');
+    }
+
+    // Event listener untuk tombol Tutup (dismiss)
+    document.getElementById('dismissSuccess').addEventListener('click', function() {
+        hideSuccessModal(); // Sembunyikan modal setelah menutup
+    });
+
+    // Fungsi untuk menyembunyikan modal sukses
+    function hideSuccessModal() {
+        document.getElementById('successModal').classList.add('hidden');
+    }
+
+    // Tambahkan event listener pada form testimonial untuk menampilkan modal sukses
+    document.getElementById('testimonialForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Simulasikan pengiriman data (gunakan AJAX atau langsung submit form)
+        // Di sini saya asumsikan Anda menggunakan AJAX, jika langsung submit, ganti dengan document.getElementById('testimonialForm').submit();
+        setTimeout(function() {
+            showSuccessModal(); // Tampilkan modal sukses setelah beberapa waktu (simulasi)
+        }, 1000); // Contoh: tunggu 1 detik sebelum menampilkan modal sukses
+    });
+    </script>
 </body>
 </html>
